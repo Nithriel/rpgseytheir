@@ -11,7 +11,7 @@ getObjectId = () => {
 };
 
 init = (callback) => {
-    MongoClient.connect('mongodb+srv://RaphaelPletz:Pletz2000@rpgseytheir-l3lko.mongodb.net/test?retryWrites=true', (err, client) => {
+    MongoClient.connect(process.env.MONGODB_URI || 'mongodb://localhost:27017/forumdb', (err, client) => {
         if (err) {
             return console.log('Unable to connect to DB');
         }
