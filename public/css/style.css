@@ -1,0 +1,335 @@
+body {
+    font-family: Helvetica;
+    margin: 0 0 5% 0;
+    min-width: 400px;
+}
+
+/* ------------------------------------------- MENU BAR ------------------------------------------- */
+
+
+nav li{
+
+    padding-right: 10px;
+}
+
+
+a.logo {
+    font-family: 'Rajdhani', sans-serif;
+    font-weight: normal;
+    font-size: 40px;
+    text-transform: capitalize;
+    color: #FFFFFF;
+}
+
+@media (max-width: 480px) {
+    nav a.logo{
+        font-size: 30px;
+    }
+    nav img{
+        height: 45px;
+        width: 64px;
+    }
+}
+
+.navbar-brand {
+    padding: 0;
+}
+
+.pad-top-bot{
+    padding-top: 5px;
+    padding-bottom: 5px;
+}
+
+/* ------------------------------------------- LOGIN PAGE ------------------------------------------- */
+
+.login {
+    float: right;
+}
+
+.username {
+    display: block;
+    color: white;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+    margin: 0;
+}
+
+.form_container {
+    width: 80%;
+    margin: auto;
+    padding: 16px;
+    background-color: white;
+}
+
+#form_submit {
+    margin-top: 20px;
+}
+
+.form_button {
+    background-color: #5CB8E6;
+    border: none;
+    color: white;
+    text-align: center;
+    font-size: 16px;
+    padding: 10px 15px
+}
+
+.form_button:disabled {
+    background-color: #f1f1f1;
+}
+
+input[type=text],
+input[type=email],
+input[type=password] {
+    width: 100%;
+    padding: 15px;
+    margin: 5px 0 22px 0;
+    display: inline-block;
+    border: none;
+    background: #f1f1f1;
+}
+
+input[type=password]:focus {
+    box-shadow: none;
+}
+
+/* TODO: FIX COLOURSSSS */
+.diff_pw {
+    border: 1px solid red;
+    box-shadow: 0 0 0 1px red;
+}
+
+.same_pw {
+    border: 1px solid green;
+    box-shadow: 0 0 0 1px green;
+}
+
+#pwd_message {
+    font-weight: bold;
+    font-style: italic;
+}
+
+/* ------------------------------------------- NEW POST PAGE ------------------------------------------- */
+
+
+.post_text {
+    width: 100%;
+    padding: 15px;
+    border: 2px solid black;
+
+}
+
+
+
+/* ------------------------------------------- FORUM PAGE ------------------------------------------- */
+#message_container {
+    width: 80%;
+    margin: auto;
+    padding: 16px;
+}
+
+#message_container h1 {
+    margin-bottom: 0;
+}
+
+.message_list {
+    background-color: white;
+}
+
+.message_list > li {
+    float: none;
+    padding: 15px 15px 0 15px;
+    margin: 10px;
+}
+
+.message_list > li a {
+    color: black;
+    text-align: left;
+}
+
+.poster {
+    text-align: right;
+    margin: 0;
+    font-size: 0.8em;
+}
+
+.register_add > p,
+.register_add > button{
+    text-align: right;
+    margin-top: 0;
+    
+}
+
+a {
+    text-decoration: none;
+}
+
+.message_list > li a:hover {
+    background-color: white;
+    color: #336680;
+    font-weight: bold;
+}
+
+.message_list > p {
+    margin: auto;
+}
+
+.reg_link:visited {
+    color: #336680;
+}
+
+#edit_post_form {
+    display: none;
+}
+
+/* ------------------------------------------- THREAD PAGE ------------------------------------------- */
+#thread_container {
+    width: 80%;
+    margin: auto;
+    padding: 16px;
+
+
+}
+
+#replies_container {
+    width: 95%;
+    margin: auto 0 auto auto;
+
+
+}
+
+#replies_container ul{
+    background-color: white;
+
+
+}
+
+#replies_container li{
+    float: none;
+    padding: 15px;
+    margin: 10px;
+    border-bottom: 1px solid black;
+}
+
+#replies_container textarea {
+    width: 97%;
+    padding: 15px;
+
+
+}
+
+#edit_button {
+   margin-bottom: 20px;
+   margin-left: 20px;
+}
+
+#reply_button {
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+/* ------------------------------------------- Footer CSS ------------------------------------------- */
+.mainfoot {
+    height: 70px;
+    vertical-align: bottom;
+}
+
+.align-right {
+    color: white;
+    text-align: right;
+}
+
+/*--------------------------------------------password validation message box-----------------------*/
+
+/* The message box is shown when password field is clicked */
+#pswmessage {
+    display:none;
+    background: #f1f1f1;
+    color: #000;
+    position: relative;
+    padding: 20px;
+}
+
+#pswmessage p {
+    padding: 0px 35px;
+    font-size: 14px;
+}
+
+  /* show green check mark when the requirement is met */
+.valid {
+    color: green;
+}
+
+.valid:before {
+    position: relative;
+    left: -35px;
+    content: "✔";
+}
+
+  /* show red x with incomplete requirement */
+.invalid {
+    color: red;
+    margin-bottom: 0;
+}
+
+.pass-style {
+    margin-bottom: 0;
+    padding-bottom: 0;
+    padding-top: 0
+}
+
+.invalid:before {
+    position: relative;
+    left: -35px;
+    content: "✖";
+}
+
+
+/*main forum page*/
+
+.genre-text{
+    position: absolute;
+    top: 8px;
+    left: 16px;
+    font-family: 'Rajdhani', sans-serif;
+    font-weight: bold;
+    font-size: 20px;
+    text-transform: capitalize;
+    color: #FFFFFF;
+}
+
+.main-text{
+    position: absolute;
+    font-family: 'Rajdhani', sans-serif;
+    font-weight: bold;
+    font-size: 20px;
+    color: #5D6CEC;
+    padding-top: 20px;
+    margin-bottom: 20px;
+}
+
+.box:hover .genre-text{
+    color: #E5E5E5
+}
+
+.search-bar input[type=text]:focus{
+    border-bottom: 2px solid #5D6CEC;
+    box-shadow: 0 1px 0 0 #5D6CEC;
+
+
+}
+
+.search-bar .fa {
+    color: #5D6CEC;
+
+}
+
+.pt-60{
+    padding-top: 60px;
+}
+
+.pb-60{
+    padding-bottom: 60px;
+}
+
+
