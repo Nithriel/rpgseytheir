@@ -59,7 +59,7 @@ app.get('/login', (request, response) => {
 app.get('/login_failed', (request, response) => {
     response.render('login.hbs', {
         title: 'Login',
-        heading: "<h1 class='text-danger'>Username and Password do not match</h1>"
+        heading: "<h1 class='text-danger'>Usuário e senha não coincidem</h1>"
     });
 });
 
@@ -76,7 +76,7 @@ app.get('/logout', (request, response) => {
 app.get("/registration", checkAuthentication_false, (request, response) => {
     response.render("registration.hbs", {
         title: 'Registration',
-        heading: 'Make an Account'
+        heading: 'Crie uma conta'
     });
 });
 
@@ -86,7 +86,7 @@ app.get('/', async (request, response) => {
 
     response.render('genre.hbs', {
         title: 'Home',
-        heading: 'Message Board',
+        heading: 'Mensagens',
         topic: topic,
     });
 });
@@ -101,7 +101,7 @@ app.post('/search', async (request, response) => {
     response.render('forum.hbs', {
         title: 'Home',
         message: filtered_messages,
-        heading: 'Results for ' + text_to_search
+        heading: 'Resultados para ' + text_to_search
     });
 });
 
@@ -134,8 +134,8 @@ app.get('/genre_board/:genre', async (request, response) => {
 // Adding new post
 app.get('/:genre/new_post', checkAuthentication, (request, response) => {
     response.render('new_post.hbs', {
-        title: 'Post',
-        heading: 'Add a post',
+        title: 'Publicar',
+        heading: 'Nova publicação',
         genre: request.params.genre
     });
 });

@@ -25,7 +25,7 @@ function saveUser(request, response) {
         if (result.length > 0) {
             response.render("registration.hbs", {
                 title: 'Registration',
-                heading: "<span class='text-danger'>Already existing e-mail or username</span>"
+                heading: "<span class='text-danger'>Email ou usuário ja existente</span>"
             });
         } else if (result.length == 0) {
             db.collection('users').insertOne({
@@ -39,7 +39,7 @@ function saveUser(request, response) {
                 }
                 response.render('login.hbs', {
                     title: 'Login',
-                    heading: "<h1 class='text-success'>Account successfully created!</h1>"
+                    heading: "<h1 class='text-success'>Conta criada com sucesso!</h1>"
                 });
             });
         }
