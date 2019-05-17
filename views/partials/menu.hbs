@@ -18,22 +18,22 @@
                         </button>
                         <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
                             {{#each user.notification}}
-                                <a class="dropdown-item" href="/thread/{{_id}}">New Reply on {{title}}</a>
+                                <a class="dropdown-item" href="/thread/{{_id}}">Atualização em {{title}}</a>
                             {{else}}
                                 <a class="dropdown-item" href="#">No new notifications</a>
                             {{/each}}
                             <div class="dropdown-divider"></div>
-                            <a class="dropdown-item" href="/clearnotification">Clear Notifications</a>
+                            <a class="dropdown-item" href="/clearnotification">Limpar notificaç~pes</a>
                         </div>
                         </div>
                     </li>
 
                     <li class="login nav-item pad-top-bot"><a class="active" href="/logout"><button type="button" class="btn btn-outline-light">Logout</button></a></li>
-                    <span class="navbar-text username" style="padding-right: 5px; padding-top: 0.7rem; white-space: nowrap;">Welcome, {{user.username}}</span>
+                    <span class="navbar-text username" style="padding-right: 5px; padding-top: 0.7rem; white-space: nowrap;">Bem vindo(a), {{user.username}}</span>
                     <!--<li class="login nav-item ml-auto" style="padding-right: 5px;"><p class="username" style="padding-right: 5px; white-space: nowrap;">Welcome, {{user.username}}</p></li>-->
                 {{else}}
                     <li class="login nav-item pad-top-bot"><a class="active" href="/login"><button type="button" class="btn btn-outline-light" >Login</button></a></li>
-                    <li class="login nav-item pad-top-bot"><a href="/registration"><button type="button" class="btn btn-outline-light" >Register</button></a></li>
+                    <li class="login nav-item pad-top-bot"><a href="/registration"><button type="button" class="btn btn-outline-light" >Registrar</button></a></li>
                 {{/if}}
             </ul>
         </div>
