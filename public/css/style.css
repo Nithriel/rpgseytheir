@@ -116,7 +116,7 @@ input[type=password]:focus {
 .post_text {
     width: 100%;
     padding: 15px;
-    border: 2px solid black;
+    /*border: 2px solid black;*/
 
 }
 

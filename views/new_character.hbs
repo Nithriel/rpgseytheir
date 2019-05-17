@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+
+{{> header}}
+
+<body>
+    {{> menu}}
+    <form method="post" action="/{{genre}}/add_character" id="new_post_form">
+        <div class="form_container">
+            <h1>{{heading}}</h1>
+            <label for="name"><b>Nome</b></label>
+            <input type="text" name="name" required>
+            <nav>
+                <div class="nav nav-tabs" id="nav-tab" role="tablist">
+                    <a class="nav-item nav-link active text-dark" id="nav-home-tab" data-toggle="tab" href="#nav-sheet" role="tab" aria-controls="nav-sheet" aria-selected="true">Ficha</a>
+                    <a class="nav-item nav-link text-dark" id="nav-profile-tab" data-toggle="tab" href="#nav-look" role="tab" aria-controls="nav-look" aria-selected="false">Aparência</a>
+                    <a class="nav-item nav-link text-dark" id="nav-contact-tab" data-toggle="tab" href="#nav-personality" role="tab" aria-controls="nav-personality" aria-selected="false">Personalidade</a>
+                    <a class="nav-item nav-link text-dark" id="nav-contact-tab" data-toggle="tab" href="#nav-story" role="tab" aria-controls="nav-story" aria-selected="false">História</a>
+                </div>
+            </nav>
+            <div class="tab-content" id="nav-tabContent">
+                <div class="tab-pane fade show active" id="nav-sheet" role="tabpanel" aria-labelledby="nav-sheet-tab">
+                        <div class="row mt-3">
+                            <div class = 'col-sm'>
+                                <h3>Buffs</h3>
+                                <ul class="list-group">
+                                    <li class="list-group-item" style="padding: 0; border: 0"><input type="text" class="form-control" id="buff1"></li>
+                                    <li class="list-group-item" style="padding: 0; border: 0"><input type="text" class="form-control" id="buff2"></li>
+                                    <li class="list-group-item" style="padding: 0; border: 0"><input type="text" class="form-control" id="buff3"></li>
+                                    <li class="list-group-item" style="padding: 0; border: 0"><input type="text" class="form-control" id="buff4"></li>
+                                    <li class="list-group-item" style="padding: 0; border: 0"><input type="text" class="form-control" id="buff5"></li>
+                                </ul>
+                            </div>
+                            <div class = 'col-sm'>
+                                <h3>Debuffs</h3>
+                                <ul class="list-group">
+                                    <li class="list-group-item" style="padding: 0; border: 0"><input type="text" class="form-control" id="debuff1"></li>
+                                    <li class="list-group-item" style="padding: 0; border: 0"><input type="text" class="form-control" id="debuff2"></li>
+                                    <li class="list-group-item" style="padding: 0; border: 0"><input type="text" class="form-control" id="debuff3"></li>
+                                    <li class="list-group-item" style="padding: 0; border: 0"><input type="text" class="form-control" id="debuff4"></li>
+                                    <li class="list-group-item" style="padding: 0; border: 0"><input type="text" class="form-control" id="debuff5"></li>
+                                </ul>
+                            </div>
+                    </div>
+                    <h3>Status</h3>
+                    <textarea name="status" class="post_text form-control" rows="10" cols="50" placeholder="Conteúdo..." style="width: 100%"></textarea>
+                    <h3>Inventário</h3>
+                    <textarea name="status" class="post_text form-control" rows="10" cols="50" placeholder="Conteúdo..." style="width: 100%"></textarea>
+                    <h3>Habilidades</h3>
+                    <textarea name="status" class="post_text form-control" rows="10" cols="50" placeholder="Conteúdo..." style="width: 100%"></textarea>
+                </div>
+                <div class="tab-pane fade" id="nav-look" role="tabpanel" aria-labelledby="nav-look-tab">
+                    <textarea name="look" class="post_text" rows="10" cols="50" placeholder="Conteúdo..." style="width: 100%"></textarea>
+                </div>
+                <div class="tab-pane fade" id="nav-personality" role="tabpanel" aria-labelledby="nav-personality-tab">
+                    <textarea name="personality" class="post_text" rows="10" cols="50" placeholder="Conteúdo..." style="width: 100%"></textarea>
+                </div>
+                <div class="tab-pane fade" id="nav-story" role="tabpanel" aria-labelledby="nav-story-tab">
+                    <textarea name="story" class="post_text" rows="10" cols="50" placeholder="Conteúdo..." style="width: 100%"></textarea>
+                </div>
+            </div>
+            <br>
+            <input type="submit" value="Enviar" class="btn btn-dark" id="submit_post">
+        </div>
+    </form>
+</body>
+
+<script src="js/script.js"></script>
+
+</html>

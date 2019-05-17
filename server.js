@@ -133,12 +133,28 @@ app.get('/genre_board/:genre', async (request, response) => {
 
 // Adding new post
 app.get('/:genre/new_post', checkAuthentication, (request, response) => {
+    var patt = /character/i;
+    var result = request.params.genre.match(patt);
+    if (result) {
+        response.redirect('/' + request.params.genre + '/new_character')
+        return
+    }
     response.render('new_post.hbs', {
         title: 'Publicar',
         heading: 'Nova publicação',
         genre: request.params.genre
     });
 });
+
+// Adding new post
+app.get('/:genre/new_character', checkAuthentication, (request, response) => {
+    response.render('new_character.hbs', {
+        title: 'Publicar',
+        heading: 'Novo Personagem',
+        genre: request.params.genre
+    });
+});
+
 
 // Dynamically generated endpoint for threads
 app.get('/thread/:id', async (request, response) => {
