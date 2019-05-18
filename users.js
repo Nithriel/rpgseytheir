@@ -32,6 +32,7 @@ function saveUser(request, response) {
                 email: email,
                 username: username,
                 password: password,
+                type: 'standard',
                 notification: []
             }, (err, result) => {
                 if (err) {

@@ -171,7 +171,7 @@ app.get('/thread/:id', async (request, response) => {
 
     var isOP = false;
     if (request.user != undefined) {
-        if (request.user.username == thread.username) {
+        if (request.user.username == thread.username || request.user.type === 'administrator') {
             isOP = true;
         }
     }
