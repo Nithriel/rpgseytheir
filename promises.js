@@ -19,6 +19,23 @@ var messagePromise = () => {
     });
 };
 
+var characterPromise = () => {
+    return new Promise((resolve, reject) => {
+        var db = utils.getDb();
+
+        db.collection('messages').find({
+            type: 'character'
+        }, {
+            _id: 0
+        }).toArray((err, result) => {
+            if (err) {
+                reject(err);
+            }
+            resolve(result.reverse());
+        });
+    });
+};
+
 // Populates message board page with the titles of each
 // message in the database
 var genreList = () => {
@@ -98,5 +115,6 @@ module.exports = {
     threadPromise,
     replyPromise,
     genreList,
-    specificGenre
+    specificGenre,
+    characterPromise
 };

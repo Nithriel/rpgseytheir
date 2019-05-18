@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+
+{{> header}}
+
+<body>
+    {{> menu}}
+
+    <div id="thread_container">
+        <div id="op_container">
+            <div class="form_container">
+                <h1>{{thread.title}}</h1>
+                <nav>
+                    <div class="nav nav-tabs" id="nav-tab" role="tablist">
+                        <a class="nav-item nav-link active text-dark" id="nav-home-tab" data-toggle="tab" href="#nav-sheet" role="tab" aria-controls="nav-sheet" aria-selected="true">Ficha</a>
+                        <a class="nav-item nav-link text-dark" id="nav-profile-tab" data-toggle="tab" href="#nav-look" role="tab" aria-controls="nav-look" aria-selected="false">Aparência</a>
+                        <a class="nav-item nav-link text-dark" id="nav-contact-tab" data-toggle="tab" href="#nav-personality" role="tab" aria-controls="nav-personality" aria-selected="false">Personalidade</a>
+                        <a class="nav-item nav-link text-dark" id="nav-contact-tab" data-toggle="tab" href="#nav-story" role="tab" aria-controls="nav-story" aria-selected="false">História</a>
+                    </div>
+                </nav>
+                <div class="tab-content" id="nav-tabContent">
+                    <div class="tab-pane fade show active" id="nav-sheet" role="tabpanel" aria-labelledby="nav-sheet-tab">
+                        <div class="row mt-3">
+                            <div class = 'col-sm'>
+                                <h3>Buffs</h3>
+                                <ul class="list-group">
+                                    <li class="list-group-item">{{thread.buffs.[0]}}</li>
+                                    <li class="list-group-item">{{thread.buffs.[1]}}</li>
+                                    <li class="list-group-item">{{thread.buffs.[2]}}</li>
+                                    <li class="list-group-item">{{thread.buffs.[3]}}</li>
+                                    <li class="list-group-item">{{thread.buffs.[4]}}</li>
+                                </ul>
+                            </div>
+                            <div class = 'col-sm'>
+                                <h3>Debuffs</h3>
+                                <ul class="list-group">
+                                    <li class="list-group-item">{{thread.debuffs.[0]}}</li>
+                                    <li class="list-group-item">{{thread.debuffs.[1]}}</li>
+                                    <li class="list-group-item">{{thread.debuffs.[2]}}</li>
+                                    <li class="list-group-item">{{thread.debuffs.[3]}}</li>
+                                    <li class="list-group-item">{{thread.debuffs.[4]}}</li>
+                                </ul>
+                            </div>
+                        </div>
+                        <h3>Status</h3>
+                        <p>{{{addbr thread.status}}}</p>
+                        <h3>Inventário</h3>
+                        <p>{{{addbr thread.inventory}}}</p>
+                        <h3>Habilidades</h3>
+                        <p>{{{addbr thread.skills}}}</p>
+                        {{#if isOP}}
+                        <h3>Ficha Pessoal</h3>
+                        <p>{{{addbr thread.personal_sheet}}}</p>
+                        {{/if}}
+                    </div>
+                    <div class="tab-pane fade" id="nav-look" role="tabpanel" aria-labelledby="nav-look-tab">
+                        <p>{{{addbr thread.look}}}</p>
+                    </div>
+                    <div class="tab-pane fade" id="nav-personality" role="tabpanel" aria-labelledby="nav-personality-tab">
+                        <p>{{{addbr thread.personality}}}</p>
+                        {{#if isOP}}
+                        <h3>Personalidade Pessoal</h3>
+                        <p>{{{addbr thread.personal_personality}}}</p>
+                        {{/if}}
+                    </div>
+                    <div class="tab-pane fade" id="nav-story" role="tabpanel" aria-labelledby="nav-story-tab">
+                        <p>{{{addbr thread.story}}}</p>
+                        {{#if isOP}}
+                        <h3>História Pessoal</h3>
+                        <p>{{{addbr thread.personal_story}}}</p>
+                        {{/if}}
+                    </div>
+                </div>
+            </div>
+            
+            <!--{{#if isOP}}-->
+            <!--{{/if}}-->
+            <!--<div class="container">-->
+              <!--<div class="row">-->
+                <!--<div class=".col-sm-1">-->
+                  <!--<form method="post" action="/delete_post">-->
+                  <!--<input type="hidden" name="id" value={{id}}>-->
+                  <!--<input class="btn btn-dark" type="submit" value="Deletar">-->
+                <!--</form>-->
+              <!--</div>-->
+                <!--<div class=".col-sm-2">-->
+                     <!--<button id="edit_button" class="btn btn-dark" onclick="show_edit_form()">Editar publicação</button>-->
+                 <!--</div>-->
+              <!--</div>-->
+            <!--</div>-->
+
+
+
+
+            {{!-- edit form --}}
+            {{#if isOP}}
+            <form method="post" action="/edit_post" id='edit_post_form'>
+            <br>
+                <label for="edit_textarea"><b>Editar publicação</b></label><br>
+                <input type="hidden" name="id" value={{id}}>
+                <textarea name="edit_textarea" rows="10" cols="50" class="edit_textarea">{{op_message}}</textarea><br>
+                <input class="btn btn-dark" type="submit" value="Editar"/>
+            </form>
+            {{/if}}
+        </div>
+
+        
+        <!--<div id="replies_container">-->
+            <!--{{#if isAuthenticated}}-->
+            <!--<form method="post" action="/add_reply">-->
+                <!--<input type="hidden" name="id" value={{id}}>-->
+                <!--<textarea name="reply" class="post_text" rows="10" cols="50" placeholder="Comentar a publicação" required></textarea><br>-->
+                <!--<input id="reply_button" class="btn btn-dark" type="submit" value="Publicar"/>-->
+            <!--</form>-->
+            <!--{{/if}}-->
+            <!---->
+            <!--<ul>-->
+            <!--{{#each reply}}-->
+                <!--<p>{{username}} respondeu em {{date}}</p>-->
+                <!--<li>{{{message}}}-->
+                <!--</li>-->
+            <!--{{/each}}-->
+            <!--</ul>-->
+        <!--</div>-->
+    </div>
+</body>
+<script src="/js/script.js">
+</script>
+</html>

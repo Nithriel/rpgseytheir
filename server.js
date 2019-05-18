@@ -109,8 +109,17 @@ app.post('/search', async (request, response) => {
 app.get('/genre_board/:genre', async (request, response) => {
     promises.messagePromise();
 
+    var patt = /character/i;
+    var result = request.params.genre.match(patt);
+
+    if (result) {
+        var messages = await promises.characterPromise();
+    } else {
+        messages = await promises.messagePromise();
+    }
+
     var topic = request.params.genre;
-    var messages = await promises.messagePromise();
+
     var filtered_list = [];
     for (var i = 0; i < messages.length; i++) {
         if (messages[i].genre === topic) {
@@ -136,7 +145,7 @@ app.get('/:genre/new_post', checkAuthentication, (request, response) => {
     var patt = /character/i;
     var result = request.params.genre.match(patt);
     if (result) {
-        response.redirect('/' + request.params.genre + '/new_character')
+        response.redirect('/' + request.params.genre + '/new_character');
         return
     }
     response.render('new_post.hbs', {
@@ -158,13 +167,25 @@ app.get('/:genre/new_character', checkAuthentication, (request, response) => {
 
 // Dynamically generated endpoint for threads
 app.get('/thread/:id', async (request, response) => {
-    promises.threadPromise(request.params.id);
     var thread = await promises.threadPromise(request.params.id);
+
+    var isOP = false;
+    if (request.user != undefined) {
+        if (request.user.username == thread.username) {
+            isOP = true;
+        }
+    }
 
     if (thread === null) {
         response.status(404).send('Thread does not exist')
+    } else if (thread.type === "character") {
+        response.render('character.hbs', {
+            title: 'Thread',
+            isOP: isOP,
+            thread: thread
+        });
+
     } else {
-        promises.replyPromise(request.params.id);
         var replies = await promises.replyPromise(request.params.id);
 
         for (var i = 0; i < replies.length; i++) {
@@ -173,15 +194,8 @@ app.get('/thread/:id', async (request, response) => {
             replies[i].message = text;
         }
 
-
-        var isOP = false;
-        if (request.user != undefined) {
-            if (request.user.username == thread.username) {
-                isOP = true;
-            }
-        }
-
         thread.message = thread.message.replace(/(\r\n|\n|\r)/gm, '<br>');
+
 
         response.render('thread.hbs', {
             title: 'Thread',
@@ -195,6 +209,10 @@ app.get('/thread/:id', async (request, response) => {
             thread: thread
         });
     }
+});
+
+hbs.registerHelper('addbr', function(text) {
+    return text.replace(/(\r\n|\n|\r)/gm, '<br>');
 });
 
 app.listen(port, () => {
