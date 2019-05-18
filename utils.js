@@ -11,8 +11,9 @@ getObjectId = () => {
 };
 
 init = (callback) => {
-    var MONGODB = 'mongodb://RaphaelPletz:Pletz2000@ds157516.mlab.com:57516/heroku_w5tb41f6';
-    MongoClient.connect(MONGODB || 'mongodb://localhost:27017/forumdb', (err, client) => {
+    // var MONGODB = 'mongodb://RaphaelPletz:Pletz2000@ds157516.mlab.com:57516/heroku_w5tb41f6';
+    var MONGODB = 'mongodb+srv://RaphaelPletz:Pletz2000@rpgseytheir-l3lko.mongodb.net/forumdb?retryWrites=true';
+    MongoClient.connect(MONGODB, (err, client) => {
         if (err) {
             return console.log('Unable to connect to DB');
         }
