@@ -143,6 +143,22 @@
                 </div>
             {{/if}}
         </div>
+        <div id="replies_container">
+            <ul>
+                {{#each reply}}
+                    <p>{{username}} respondeu em {{date}}</p>
+                    <li>{{{message}}}
+                    </li>
+                {{/each}}
+                {{#if isAuthenticated}}
+                    <form method="post" action="/add_reply">
+                        <input type="hidden" name="id" value={{thread._id}}>
+                        <textarea name="reply" class="post_text" rows="10" cols="50" placeholder="Comentar a publicação" required></textarea><br>
+                        <input id="reply_button" class="btn btn-dark" type="submit" value="Publicar"/>
+                    </form>
+                {{/if}}
+            </ul>
+        </div>
     </div>
 </body>
 <script>

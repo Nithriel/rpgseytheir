@@ -176,24 +176,26 @@ app.get('/thread/:id', async (request, response) => {
         }
     }
 
+    var replies = await promises.replyPromise(request.params.id);
+
+    for (var i = 0; i < replies.length; i++) {
+        var text = replies[i].message;
+        text = text.replace(/(\r\n|\n|\r)/gm, '<br>');
+        replies[i].message = text;
+    }
+
+
     if (thread === null) {
         response.status(404).send('Thread does not exist')
     } else if (thread.type === "character") {
         response.render('character.hbs', {
             title: 'Thread',
             isOP: isOP,
-            thread: thread
+            thread: thread,
+            reply: replies
         });
 
     } else {
-        var replies = await promises.replyPromise(request.params.id);
-
-        for (var i = 0; i < replies.length; i++) {
-            var text = replies[i].message;
-            text = text.replace(/(\r\n|\n|\r)/gm, '<br>');
-            replies[i].message = text;
-        }
-
         thread.message = thread.message.replace(/(\r\n|\n|\r)/gm, '<br>');
 
 
