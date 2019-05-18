@@ -8,7 +8,7 @@
 
     <div id="thread_container">
         <div id="op_container">
-            <div class="form_container">
+            <div class="form_container" id="user_info">
                 <h1>{{thread.title}}</h1>
                 <nav>
                     <div class="nav nav-tabs" id="nav-tab" role="tablist">
@@ -72,58 +72,90 @@
                     </div>
                 </div>
             </div>
-            
-            <!--{{#if isOP}}-->
-            <!--{{/if}}-->
-            <!--<div class="container">-->
-              <!--<div class="row">-->
-                <!--<div class=".col-sm-1">-->
-                  <!--<form method="post" action="/delete_post">-->
-                  <!--<input type="hidden" name="id" value={{id}}>-->
-                  <!--<input class="btn btn-dark" type="submit" value="Deletar">-->
-                <!--</form>-->
-              <!--</div>-->
-                <!--<div class=".col-sm-2">-->
-                     <!--<button id="edit_button" class="btn btn-dark" onclick="show_edit_form()">Editar publicação</button>-->
-                 <!--</div>-->
-              <!--</div>-->
-            <!--</div>-->
 
-
-
-
-            {{!-- edit form --}}
-            {{#if isOP}}
-            <form method="post" action="/edit_post" id='edit_post_form'>
-            <br>
-                <label for="edit_textarea"><b>Editar publicação</b></label><br>
-                <input type="hidden" name="id" value={{id}}>
-                <textarea name="edit_textarea" rows="10" cols="50" class="edit_textarea">{{op_message}}</textarea><br>
-                <input class="btn btn-dark" type="submit" value="Editar"/>
+            <form method="post" action="/edit_character" id="new_post_form">
+            <div class="form_container" id="edit_char" style="display: none">
+                <h1>{{thread.title}}</h1>
+                <nav>
+                    <div class="nav nav-tabs" id="nav-tab" role="tablist">
+                        <a class="nav-item nav-link active text-dark" id="nav-home-tab" data-toggle="tab" href="#nav-sheet1" role="tab" aria-controls="nav-sheet" aria-selected="true">Ficha</a>
+                        <a class="nav-item nav-link text-dark" id="nav-profile-tab" data-toggle="tab" href="#nav-look1" role="tab" aria-controls="nav-look" aria-selected="false">Aparência</a>
+                        <a class="nav-item nav-link text-dark" id="nav-contact-tab" data-toggle="tab" href="#nav-personality1" role="tab" aria-controls="nav-personality" aria-selected="false">Personalidade</a>
+                        <a class="nav-item nav-link text-dark" id="nav-contact-tab" data-toggle="tab" href="#nav-story1" role="tab" aria-controls="nav-story" aria-selected="false">História</a>
+                    </div>
+                </nav>
+                <div class="tab-content" id="nav-tabContent">
+                    <div class="tab-pane fade show active" id="nav-sheet1" role="tabpanel" aria-labelledby="nav-sheet-tab">
+                        <div class="row mt-3">
+                            <div class = 'col-sm'>
+                                <h3>Buffs</h3>
+                                <ul class="list-group">
+                                    <li class="list-group-item" style="padding: 0; border: 0"><input type="text" class="form-control" name="buff1" id="buff1" value="{{thread.buffs.[0]}}"></li>
+                                    <li class="list-group-item" style="padding: 0; border: 0"><input type="text" class="form-control" name="buff2" id="buff2" value="{{thread.buffs.[1]}}"></li>
+                                    <li class="list-group-item" style="padding: 0; border: 0"><input type="text" class="form-control" name="buff3" id="buff3" value="{{thread.buffs.[2]}}"></li>
+                                    <li class="list-group-item" style="padding: 0; border: 0"><input type="text" class="form-control" name="buff4" id="buff4" value="{{thread.buffs.[3]}}"></li>
+                                    <li class="list-group-item" style="padding: 0; border: 0"><input type="text" class="form-control" name="buff5" id="buff5" value="{{thread.buffs.[4]}}"></li>
+                                </ul>
+                            </div>
+                            <div class = 'col-sm'>
+                                <h3>Debuffs</h3>
+                                <ul class="list-group">
+                                    <li class="list-group-item" style="padding: 0; border: 0"><input type="text" class="form-control" name="debuff1" id="debuff1" value="{{thread.debuffs.[0]}}"></li>
+                                    <li class="list-group-item" style="padding: 0; border: 0"><input type="text" class="form-control" name="debuff2" id="debuff2" value="{{thread.debuffs.[1]}}"></li>
+                                    <li class="list-group-item" style="padding: 0; border: 0"><input type="text" class="form-control" name="debuff3" id="debuff3" value="{{thread.debuffs.[2]}}"></li>
+                                    <li class="list-group-item" style="padding: 0; border: 0"><input type="text" class="form-control" name="debuff4" id="debuff4" value="{{thread.debuffs.[3]}}"></li>
+                                    <li class="list-group-item" style="padding: 0; border: 0"><input type="text" class="form-control" name="debuff5" id="debuff5" value="{{thread.debuffs.[4]}}"></li>
+                                </ul>
+                            </div>
+                        </div>
+                        <h3>Status</h3>
+                        <textarea name="char_status" class="post_text form-control" rows="10" cols="50" placeholder="Conteúdo..." style="width: 100%">{{thread.status}}</textarea>
+                        <h3>Inventário</h3>
+                        <textarea name="inventory" class="post_text form-control" rows="10" cols="50" placeholder="Conteúdo..." style="width: 100%">{{thread.inventory}}</textarea>
+                        <h3>Habilidades</h3>
+                        <textarea name="skills" class="post_text form-control" rows="10" cols="50" placeholder="Conteúdo..." style="width: 100%">{{thread.skills}}</textarea>
+                        <h3>Ficha Pessoal</h3>
+                        <textarea name="personal_sheet" class="post_text form-control" rows="10" cols="50" placeholder="Conteúdo..." style="width: 100%">{{thread.personal_sheet}}</textarea>
+                    </div>
+                    <div class="tab-pane fade" id="nav-look1" role="tabpanel" aria-labelledby="nav-look-tab">
+                        <textarea name="look" class="post_text" rows="10" cols="50" placeholder="Conteúdo..." style="width: 100%">{{thread.look}}</textarea>
+                    </div>
+                    <div class="tab-pane fade" id="nav-personality1" role="tabpanel" aria-labelledby="nav-personality-tab">
+                        <textarea name="personality" class="post_text" rows="10" cols="50" placeholder="Conteúdo..." style="width: 100%">{{thread.personality}}</textarea>
+                        <h3>Personalidade Pessoal</h3>
+                        <textarea name="personal_personality" class="post_text form-control" rows="10" cols="50" placeholder="Conteúdo..." style="width: 100%">{{thread.personal_personality}}</textarea>
+                    </div>
+                    <div class="tab-pane fade" id="nav-story1" role="tabpanel" aria-labelledby="nav-story-tab">
+                        <textarea name="story" class="post_text" rows="10" cols="50" placeholder="Conteúdo..." style="width: 100%">{{thread.story}}</textarea>
+                        <h3>História Pessoal</h3>
+                        <textarea name="personal_story" class="post_text form-control" rows="10" cols="50" placeholder="Conteúdo..." style="width: 100%">{{thread.personal_story}}</textarea>
+                    </div>
+                </div>
+                <br>
+                <input type="hidden" name="id" value={{thread._id}}>
+                <input type="submit" value="Enviar" class="btn btn-dark" id="submit_post">
+            </div>
             </form>
+            
+            {{#if isOP}}
+                <div class=".col-sm-2">
+                    <button id="edit_button" class="btn btn-dark" onclick="edit_character()">Editar personagem</button>
+                </div>
             {{/if}}
         </div>
-
-        
-        <!--<div id="replies_container">-->
-            <!--{{#if isAuthenticated}}-->
-            <!--<form method="post" action="/add_reply">-->
-                <!--<input type="hidden" name="id" value={{id}}>-->
-                <!--<textarea name="reply" class="post_text" rows="10" cols="50" placeholder="Comentar a publicação" required></textarea><br>-->
-                <!--<input id="reply_button" class="btn btn-dark" type="submit" value="Publicar"/>-->
-            <!--</form>-->
-            <!--{{/if}}-->
-            <!---->
-            <!--<ul>-->
-            <!--{{#each reply}}-->
-                <!--<p>{{username}} respondeu em {{date}}</p>-->
-                <!--<li>{{{message}}}-->
-                <!--</li>-->
-            <!--{{/each}}-->
-            <!--</ul>-->
-        <!--</div>-->
     </div>
 </body>
+<script>
+    function edit_character() {
+        if (document.getElementById('user_info').style.display === "none") {
+            document.getElementById('user_info').style.display = "block";
+            document.getElementById('edit_char').style.display = "none";
+        } else {
+            document.getElementById('user_info').style.display = "none";
+            document.getElementById('edit_char').style.display = "block";
+        }
+    }
+</script>
 <script src="/js/script.js">
 </script>
 </html>
