@@ -1,5 +1,4 @@
 <nav class="navbar navbar-expand-md navbar-dark bg-dark sticky-top justify-content-end py-0">
-
     <div class="container-fluid main-menu" id="menu" style="padding-right: 0;">
         <a class="navbar-brand logo py-0" href="/">
             <img src="/images/logo.png" width="50" height="40" alt="logo">  RPG Seytheir
@@ -27,10 +26,9 @@
                         </div>
                         </div>
                     </li>
-
+                    {{#if (isAdmin user.type)}}<li class="login nav-item pad-top-bot"><a class="active" href="/master_screen"><button type="button" class="btn btn-outline-light">Escudo do mestre</button></a></li>{{/if}}
                     <li class="login nav-item pad-top-bot"><a class="active" href="/logout"><button type="button" class="btn btn-outline-light">Deslogar</button></a></li>
                     <span class="navbar-text username" style="padding-right: 5px; padding-top: 0.7rem; white-space: nowrap;">Bem vindo(a), {{user.username}}</span>
-                    <!--<li class="login nav-item ml-auto" style="padding-right: 5px;"><p class="username" style="padding-right: 5px; white-space: nowrap;">Welcome, {{user.username}}</p></li>-->
                 {{else}}
                     <li class="login nav-item pad-top-bot"><a class="active" href="/login"><button type="button" class="btn btn-outline-light" >Login</button></a></li>
                     <li class="login nav-item pad-top-bot"><a href="/registration"><button type="button" class="btn btn-outline-light" >Registrar</button></a></li>

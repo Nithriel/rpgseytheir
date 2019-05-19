@@ -165,6 +165,19 @@ app.get('/:genre/new_character', checkAuthentication, (request, response) => {
     });
 });
 
+app.get('/master_screen', checkAuthentication, (request, response) => {
+    if (request.user.type !== 'administrator') {
+        response.redirect('/');
+        return
+    }
+    // response.render('new_character.hbs', {
+    //     title: 'Publicar',
+    //     heading: 'Novo Personagem',
+    //     genre: request.params.genre
+    // });
+    response.send('404 error - pagina ainda em desenvolvimento')
+});
+
 
 // Dynamically generated endpoint for threads
 app.get('/thread/:id', async (request, response) => {
@@ -216,6 +229,10 @@ app.get('/thread/:id', async (request, response) => {
 
 hbs.registerHelper('addbr', function(text) {
     return text.replace(/(\r\n|\n|\r)/gm, '<br>');
+});
+
+hbs.registerHelper('isAdmin', function(type) {
+    return type === 'administrator';
 });
 
 app.listen(port, () => {
