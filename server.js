@@ -95,6 +95,7 @@ app.get('/', async (request, response) => {
 app.post('/search', async (request, response) => {
     var text_to_search = request.body.search;
     var message_list = await promises.messagePromise();
+    message_list = message_list.concat(await promises.characterPromise());
 
     var filtered_messages = await search_script.search(text_to_search, message_list);
 

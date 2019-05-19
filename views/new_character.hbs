@@ -8,8 +8,11 @@
     <form method="post" action="/{{genre}}/add_character" id="new_post_form">
         <div class="form_container">
             <h1>{{heading}}</h1>
+            <label for="image_url"><b>URL da imagem do personagem</b></label>
+            <input type="text" class="text-center" name="image_url" id="image_url" src="{{thread.image_url}}">
+
             <label for="name"><b>Nome</b></label>
-            <input type="text" name="name" required>
+            <input type="text" name="name" id="name" required>
             <nav>
                 <div class="nav nav-tabs" id="nav-tab" role="tablist">
                     <a class="nav-item nav-link active text-dark" id="nav-home-tab" data-toggle="tab" href="#nav-sheet" role="tab" aria-controls="nav-sheet" aria-selected="true">Ficha</a>

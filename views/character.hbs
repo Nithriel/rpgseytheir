@@ -9,8 +9,11 @@
     <div id="thread_container">
         <div id="op_container">
             <div class="form_container" id="user_info">
-                <h1>{{thread.title}}</h1>
-                <nav>
+                <!--<div>-->
+                {{#if thread.image_url}}<img alt="profile picture" height="auto" width="200" class="rounded-circle mx-auto d-block" src="{{thread.image_url}}">{{/if}}
+                    <h1 class="text-center">{{thread.title}}</h1>
+                <!--</div>-->
+                <nav class="mt-4">
                     <div class="nav nav-tabs" id="nav-tab" role="tablist">
                         <a class="nav-item nav-link active text-dark" id="nav-home-tab" data-toggle="tab" href="#nav-sheet" role="tab" aria-controls="nav-sheet" aria-selected="true">Ficha</a>
                         <a class="nav-item nav-link text-dark" id="nav-profile-tab" data-toggle="tab" href="#nav-look" role="tab" aria-controls="nav-look" aria-selected="false">Aparência</a>
@@ -95,7 +98,10 @@
 
             <form method="post" action="/edit_character" id="new_post_form">
             <div class="form_container" id="edit_char" style="display: none">
-                <h1>{{thread.title}}</h1>
+                <label for="image_url"><b>URL da imagem do personagem</b></label>
+                <input type="text" class="text-center" name="image_url" id="image_url" src="{{thread.image_url}}">
+                <label for="name"><b>Nome</b></label>
+                <input type="text" class="text-center" name="name" id="name" value="{{thread.title}}">
                 <nav>
                     <div class="nav nav-tabs" id="nav-tab" role="tablist">
                         <a class="nav-item nav-link active text-dark" id="nav-home-tab" data-toggle="tab" href="#nav-sheet1" role="tab" aria-controls="nav-sheet" aria-selected="true">Ficha</a>

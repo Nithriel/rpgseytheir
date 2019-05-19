@@ -61,11 +61,13 @@ function add_character(request, response) {
     var personal_story = request.body.personal_story;
     var username = request.user.username;
     var chosen_genre = request.params.genre;
+    var image_url = request.body.image_url;
 
     var db = utils.getDb();
 
     db.collection('messages').insertOne({
         title: title,
+        image_url: image_url,
         message: title,
         buffs: buffs,
         debuffs: debuffs,
@@ -95,6 +97,8 @@ function add_character(request, response) {
 function edit_character(request, response) {
     var ObjectId = utils.getObjectId();
 
+    var title = request.body.name;
+    var image_url = request.body.image_url;
     var buffs = [request.body.buff1, request.body.buff2, request.body.buff3, request.body.buff4 ,request.body.buff5];
     var debuffs = [request.body.debuff1, request.body.debuff2, request.body.debuff3, request.body.debuff4, request.body.debuff5];
     var status = request.body.char_status;
@@ -116,6 +120,9 @@ function edit_character(request, response) {
         _id: id
     }, {
         $set: {
+            title: title,
+            image_url: image_url,
+            message: title,
             buffs: buffs,
             debuffs: debuffs,
             status: status,
@@ -207,7 +214,8 @@ async function addNotification(thread_id) {
     });
     db.collection('users').updateMany({
     }, {
-        $addToSet: {notification: thread}
+        $addToSet: {notification: {_id : thread._id,
+                                    title: thread.title}}
     }, (err, items) => {})
 }
 
