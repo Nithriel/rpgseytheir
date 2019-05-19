@@ -49,6 +49,7 @@ function add_post(request, response) {
         if (err) {
             response.send('Unable to post message');
         }
+        addNotification(result.ops[0]._id);
         response.redirect('/genre_board/' + chosen_genre);
     });
 }
@@ -94,6 +95,7 @@ function add_character(request, response) {
         if (err) {
             response.send('Unable to post message');
         }
+        addNotification(result.ops[0]._id);
         response.redirect('/genre_board/' + chosen_genre);
     });
 }
@@ -115,6 +117,8 @@ function edit_character(request, response) {
     var id = ObjectId(request.body.id);
 
     var db = utils.getDb();
+
+    addNotification(request.body.id);
 
     db.collection('messages').findOneAndUpdate({
         _id: id
@@ -146,6 +150,8 @@ function edit_post(request, response) {
     
     var db = utils.getDb();
     var ObjectId = utils.getObjectId();
+
+    addNotification(thread_id);
     
     db.collection('messages').findOneAndUpdate({
         _id: new ObjectId(thread_id)
@@ -207,16 +213,9 @@ async function addNotification(thread_id) {
     var thread = await db.collection('messages').findOne({
         _id: ObjectId(thread_id)
     });
-    var user = thread.username;
-    var dbuser = await db.collection('users').findOne({
-        username: user
-    });
-    var notifications = dbuser.notification;
-    notifications.unshift(thread);
-    db.collection('users').findOneAndUpdate({
-        username: user
+    db.collection('users').updateMany({
     }, {
-        $set: {notification: notifications}
+        $addToSet: {notification: thread}
     }, (err, items) => {})
 }
 
