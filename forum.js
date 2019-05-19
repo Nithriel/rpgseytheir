@@ -1,6 +1,7 @@
 const express = require('express');
 const utils = require('./utils');
 const pass = require('./passport.js');
+const moment = require('moment');
 
 var router = express.Router();
 
@@ -16,17 +17,8 @@ router.post('/edit_character', edit_character);
 router.get('/clearnotification', clearNotification);
 
 function get_date() {
-    var date = new Date();
-    var day = date.getDate();
-    var month = date.getMonth();
-    var year = date.getFullYear();
-    var hours = date.getHours();
-    var minutes = date.getMinutes();
-    var seconds = date.getSeconds();
-
-    current_date = `${day}/${month}/${year} ${hours}:${minutes}:${seconds}`;
-
-    return current_date;
+    var utcMoment = moment.utc().subtract(3, 'hours').locale('pt').format('LLL');
+    return utcMoment;
 }
 
 function add_post(request, response) {

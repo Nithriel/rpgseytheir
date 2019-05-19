@@ -15,7 +15,8 @@
                         <a class="nav-item nav-link active text-dark" id="nav-home-tab" data-toggle="tab" href="#nav-sheet" role="tab" aria-controls="nav-sheet" aria-selected="true">Ficha</a>
                         <a class="nav-item nav-link text-dark" id="nav-profile-tab" data-toggle="tab" href="#nav-look" role="tab" aria-controls="nav-look" aria-selected="false">Aparência</a>
                         <a class="nav-item nav-link text-dark" id="nav-contact-tab" data-toggle="tab" href="#nav-personality" role="tab" aria-controls="nav-personality" aria-selected="false">Personalidade</a>
-                        <a class="nav-item nav-link text-dark" id="nav-contact-tab" data-toggle="tab" href="#nav-story" role="tab" aria-controls="nav-story" aria-selected="false">História</a>
+                        <a class="nav-item nav-link text-dark" id="nav-story-tab" data-toggle="tab" href="#nav-story" role="tab" aria-controls="nav-story" aria-selected="false">História</a>
+                        <a class="nav-item nav-link text-dark" id="nav-comments-tab" data-toggle="tab" href="#nav-comments" role="tab" aria-controls="nav-comments" aria-selected="false">Comentários</a>
                     </div>
                 </nav>
                 <div class="tab-content" id="nav-tabContent">
@@ -70,6 +71,25 @@
                         <p>{{{addbr thread.personal_story}}}</p>
                         {{/if}}
                     </div>
+                    <div class="tab-pane fade" id="nav-comments" role="tabpanel" aria-labelledby="nav-comments-tab">
+                        <div id="replies_container">
+                            <ul>
+                                {{#each reply}}
+                                    <p>{{username}} respondeu em {{date}}</p>
+                                    <li>{{{message}}}
+                                    </li>
+                                {{/each}}
+                                {{#if isAuthenticated}}
+                                    <form method="post" action="/add_reply">
+                                        <input type="hidden" name="id" value={{thread._id}}>
+                                        <textarea name="reply" class="post_text" rows="10" cols="50" placeholder="Comentar a publicação" required></textarea><br>
+                                        <input id="reply_button" class="btn btn-dark" type="submit" value="Publicar"/>
+                                    </form>
+                                {{/if}}
+                            </ul>
+                        </div>
+                    </div>
+                </div>
                 </div>
             </div>
 
@@ -143,23 +163,6 @@
                 </div>
             {{/if}}
         </div>
-        <div id="replies_container">
-            <ul>
-                {{#each reply}}
-                    <p>{{username}} respondeu em {{date}}</p>
-                    <li>{{{message}}}
-                    </li>
-                {{/each}}
-                {{#if isAuthenticated}}
-                    <form method="post" action="/add_reply">
-                        <input type="hidden" name="id" value={{thread._id}}>
-                        <textarea name="reply" class="post_text" rows="10" cols="50" placeholder="Comentar a publicação" required></textarea><br>
-                        <input id="reply_button" class="btn btn-dark" type="submit" value="Publicar"/>
-                    </form>
-                {{/if}}
-            </ul>
-        </div>
-    </div>
 </body>
 <script>
     function edit_character() {
