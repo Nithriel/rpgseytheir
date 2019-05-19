@@ -7,14 +7,14 @@ function confirm_password() {
     var r_password = (document.getElementsByName('r_password'))[0].value;
 
     if (password != r_password) {
-        document.getElementById('pwd_message').innerHTML = 'Passwords do not match';
+        document.getElementById('pwd_message').innerHTML = 'Senhas não coincidem';
         document.getElementById('form_submit').disabled=true;
 
         (document.getElementsByName('password'))[0].className="diff_pw";
         (document.getElementsByName('r_password'))[0].className="diff_pw";
     }
     else {
-        document.getElementById('pwd_message').innerHTML = 'Passwords match! <i class="em em-smile"></i>';
+        document.getElementById('pwd_message').innerHTML = 'Senhas coincidem! <i class="em em-smile"></i>';
         document.getElementById('form_submit').disabled=false;
 
         (document.getElementsByName('password'))[0].className="same_pw";
