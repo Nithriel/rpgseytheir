@@ -9,8 +9,9 @@ async function search (text_to_search, message_list) {
 
     for (var a = 0; a < text_to_search.length; a++) {
         //get all synonyms and words with similar meaning to the user input
-        var synonyms = await axios.get('https://api.datamuse.com/words?ml=' + encodeURI(text_to_search[a]));
-        synonym_list = synonym_list.concat(synonyms.data);
+        // var synonyms = await axios.get('https://api.datamuse.com/words?ml=' + encodeURI(text_to_search[a]));
+        // synonym_list = synonym_list.concat(synonyms.data);
+        synonym_list = [];
     }
 
 
