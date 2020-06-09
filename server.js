@@ -128,6 +128,13 @@ app.get('/genre_board/:genre', async (request, response) => {
         }
     }
 
+    filtered_list.sort(function(a, b) {
+        var textA = a.title.toUpperCase();
+        var textB = b.title.toUpperCase();
+        return (textA < textB) ? -1 : (textA > textB) ? 1 : 0;
+    });
+
+
     var genre = await promises.specificGenre(topic);
     try {
         response.render('forum.hbs', {
