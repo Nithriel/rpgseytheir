@@ -22,7 +22,7 @@
     "body-parser": "^1.18.3",
     "express": "^4.16.4",
     "express-session": "^1.15.6",
-    "hbs": "^4.0.4",
+    "hbs": "^4.2.0",
     "moment": "^2.29.2",
     "moment-timezone": "^0.5.25",
     "mongodb": "^3.2.2",
